@@ -37,6 +37,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.bitbucket.omargameelsalem</groupId>
+			<artifactId>T4Spring</artifactId>
+			<version>1.0</version>
+		</dependency>
 
 	</dependencies>
 

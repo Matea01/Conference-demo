@@ -1,9 +1,7 @@
 package com.pluralsight.conferencedemo.models;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+import javax.persistence.*;
+import java.util.List;
 
 //kao u bazi
 @Entity(name="speakers")
@@ -18,10 +16,33 @@ public class Speaker {
     private String title;
     private String company;
     private String speaker_bio;
+    @Lob //stands for large objects and this anotation helps JPA hendle
+    //large objects
+    @Type(type="org.hibernate.type.BinaryType")//this line helps hibernate handel
+    //binary data
+    private byte[] speaker_photo;
 
+    public byte[] getSpeaker_photo() {
+        return speaker_photo;
+    }
+
+    public void setSpeaker_photo(byte[] speaker_photo) {
+        this.speaker_photo = speaker_photo;
+    }
+
+    @ManyToMany(mappedBy ="speakers")
+    private List<Session> sessions;
     //defaultni konstruktor
     public Speaker(){
+    }
 
+    public List<Session> getSessions() {
+
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
     }
 
     public Long getSpeaker_id() {
